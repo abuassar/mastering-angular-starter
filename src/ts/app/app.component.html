@@ -1,0 +1,40 @@
+<form id="profileform" [formGroup]="profileForm">
+    <h1>Profile:</h1>
+    <div>
+        <label for="first-name-input"> First Name:</label>
+        <input type="text" id="first-name-input" formControlName="firstNameInput" />
+        <br/> {{profileForm.controls["firstNameInput"].value}}
+    </div>
+    <div>
+        <label for="last-name-input"> Last Name:</label>
+        <input type="text" id="last-name-input" formControlName="lastNameInput" />
+        <br/> {{profileForm.controls["lastNameInput"].value}}
+    </div>
+    <div formArrayName="addressGroups">
+        <div *ngFor="let addressGroup of profileForm.controls['addressGroups'].controls" [formGroup]="addressGroup">
+            <h2>Address:</h2>
+            <div>
+                <label for="street-input"> Street:</label>
+                <input type="text" id="street-input" formControlName="streetInput" />
+                <br/> {{addressGroup.controls["streetInput"].value}}
+            </div>
+            <div>
+                <label for="city-input"> City:</label>
+                <input type="text" id="city-input" formControlName="cityInput" />
+                <br/> {{addressGroup.controls["cityInput"].value}}
+            </div>
+            <div>
+                <label for="state-input"> State:</label>
+                <input type="text" id="state-input" formControlName="stateInput" />
+                <br/> {{addressGroup.controls["stateInput"].value}}
+            </div>
+            <div>
+                <label for="zipCode-input"> zipCode:</label>
+                <input type="text" id="zipCode-input" formControlName="zipCodeInput" />
+                <br/> {{addressGroup.controls["zipCodeInput"].value}}
+            </div>
+        </div>
+    </div>
+    <button (click)="addAddressGroup()"> Add Address</button>
+    <button (click)="save()"> save</button>
+</form>
